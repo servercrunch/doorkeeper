@@ -10,9 +10,8 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'generator_spec/test_case'
 require 'timecop'
+require 'factory_girl_rails'
 require "support/orm/#{DOORKEEPER_ORM}"
-
-ENGINE_RAILS_ROOT = File.join(File.dirname(__FILE__), '../')
 
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
