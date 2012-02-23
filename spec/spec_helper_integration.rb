@@ -13,7 +13,7 @@ require 'timecop'
 require 'factory_girl_rails'
 require "support/orm/#{DOORKEEPER_ORM}"
 
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
+Dir["#{File.dirname(__FILE__)}/support/{dependencies,helpers,shared}/*.rb"].each { |f| require f }
 
 RSpec.configure do |config|
   config.mock_with :rspec
