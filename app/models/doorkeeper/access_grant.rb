@@ -6,7 +6,7 @@ module Doorkeeper
     include Doorkeeper::Models::Expirable
     include Doorkeeper::Models::Revocable
 
-    belongs_to :application
+    belongs_to :application, :class_name => "Doorkeeper::Application"
 
     validates :resource_owner_id, :application_id, :token, :expires_in, :redirect_uri, :presence => true
 
