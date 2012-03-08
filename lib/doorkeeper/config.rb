@@ -100,10 +100,10 @@ module Doorkeeper
 
     extend Option
 
+    option :orm
     option :resource_owner_authenticator, :as      => :authenticate_resource_owner
     option :admin_authenticator,          :as      => :authenticate_admin
     option :access_token_expires_in,      :default => 7200
-    option :orm,                          :default => :active_record
     option :authorization_scopes,         :as      => :scopes, :builder_class => ScopesBuilder, :default => Scopes.new
 
     def refresh_token_enabled?
