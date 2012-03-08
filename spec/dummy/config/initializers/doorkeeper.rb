@@ -31,4 +31,7 @@ Doorkeeper.configure do
 
   # Issue access tokens with refresh token (disabled by default)
   use_refresh_token
+
+  # Customize the ORM
+  orm DOORKEEPER_ORM
 end

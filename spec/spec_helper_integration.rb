@@ -1,7 +1,5 @@
 ENV["RAILS_ENV"] ||= 'test'
-DOORKEEPER_ORM = (ENV["DOORKEEPER_ORM"] || :active_record).to_sym
-
-puts "\n==> Doorkeeper.orm = #{DOORKEEPER_ORM.inspect}"
+DOORKEEPER_ORM = (ENV['DOORKEEPER_ORM'] || :active_record).to_sym
 
 $:.unshift File.dirname(__FILE__)
 
@@ -12,7 +10,9 @@ require 'generator_spec/test_case'
 require 'timecop'
 require 'factory_girl_rails'
 require 'database_cleaner'
-require "support/orm/#{DOORKEEPER_ORM}"
+
+puts "\n==> Doorkeeper.orm = #{Doorkeeper.configuration.orm.inspect}"
+require "support/orm/#{Doorkeeper.configuration.orm}"
 
 Dir["#{File.dirname(__FILE__)}/support/{helpers,shared}/*.rb"].each { |f| require f }
 
