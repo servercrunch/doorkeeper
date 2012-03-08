@@ -68,4 +68,15 @@ describe Doorkeeper, "configuration" do
       subject.refresh_token_enabled?.should be_true
     end
   end
+
+  describe "orm" do
+    it "is :activerecord by default" do
+      subject.orm.should == :active_record
+    end
+
+    # it "is accepts :mongoid orm" do
+    #   Doorkeeper.configure { orm :mongoid }
+    #   subject.orm.should == :mongoid
+    # end
+  end
 end
