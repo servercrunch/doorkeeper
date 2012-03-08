@@ -5,10 +5,20 @@ require 'doorkeeper/config/scopes_builder'
 module Doorkeeper
   def self.configure(&block)
     @config = Config::Builder.new(&block).build
+    enable_orm
   end
 
   def self.configuration
     @config
+  end
+
+  def self.enable_orm
+    require "doorkeeper/models/#{@config.orm}/access_grant"
+    require "doorkeeper/models/#{@config.orm}/access_token"
+    require "doorkeeper/models/#{@config.orm}/application"
+    require 'doorkeeper/models/access_grant'
+    require 'doorkeeper/models/access_token'
+    require 'doorkeeper/models/application'
   end
 
   class Config
@@ -93,7 +103,7 @@ module Doorkeeper
     option :resource_owner_authenticator, :as      => :authenticate_resource_owner
     option :admin_authenticator,          :as      => :authenticate_admin
     option :access_token_expires_in,      :default => 7200
-    option :orm,                          :default => :activerecord
+    option :orm,                          :default => :active_record
     option :authorization_scopes,         :as      => :scopes, :builder_class => ScopesBuilder, :default => Scopes.new
 
     def refresh_token_enabled?
