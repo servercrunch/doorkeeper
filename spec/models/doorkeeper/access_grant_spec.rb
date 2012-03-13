@@ -41,7 +41,19 @@ describe Doorkeeper::AccessGrant do
     end
 
     describe "returns an array of scopes" do
-      subject { Factory(:access_grant, :scopes => "public write").scopes }
+      # subject { Factory(:access_grant, :scopes => "public write").scopes }
+      subject { Doorkeeper::AccessGrant.create!({
+          :scopes => "public write",
+          :application => Factory(:application),
+          :resource_owner_id => 99,
+          :expires_in => 100,
+          :redirect_uri => "http://hello.com"
+        }).scopes
+      }
+
+      before do
+        subject
+      end
 
       it { should be_kind_of(Array) }
       its(:count) { should == 2 }

@@ -10,7 +10,7 @@ module Doorkeeper
     field :refresh_token, :type => String
     field :expires_in, :type => Integer
     field :revoked_at, :type => DateTime
-    field :scopes, :type => Array
+    field :scopes, :type => String
 
     def self.find_by_token(token)
       where(:token => token).first

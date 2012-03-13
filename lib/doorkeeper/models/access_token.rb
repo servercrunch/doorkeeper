@@ -44,6 +44,10 @@ module Doorkeeper
       !expired? && !revoked?
     end
 
+    def scopes=(v)
+      super(v)
+    end
+
     def scopes
       scope_string = self[:scopes] || ""
       scope_string.split(" ").map(&:to_sym)
