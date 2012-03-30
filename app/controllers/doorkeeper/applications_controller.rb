@@ -13,7 +13,9 @@ module Doorkeeper
     end
 
     def create
-      @application = Application.new(params[:application])
+      pars = params[:application] || {}
+      pars[:resource_owner_id] ||= current_user.id_user
+      @application = Application.new(pars)
       flash[:notice] = "Application created" if @application.save
       respond_with @application
     end
@@ -27,8 +29,10 @@ module Doorkeeper
     end
 
     def update
+      pars = params[:application] || {}
+      pars[:resource_owner_id] ||= current_user.id_user
       @application = Application.find(params[:id])
-      flash[:notice] = "Application updated" if @application.update_attributes(params[:application])
+      flash[:notice] = "Application updated" if @application.update_attributes(pars)
       respond_with @application
     end
 
