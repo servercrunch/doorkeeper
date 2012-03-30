@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20111206151426) do
   end
 
   create_table "oauth_applications", :force => true do |t|
+    t.integer  "resource_owner_id", :null => false
     t.string   "name",         :null => false
     t.string   "uid",          :null => false
     t.string   "secret",       :null => false

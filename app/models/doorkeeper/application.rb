@@ -4,12 +4,13 @@ module Doorkeeper
 
     self.table_name = :oauth_applications
 
+    belongs_to :resource_owner
     has_many :access_grants, :dependent => :destroy
     has_many :access_tokens, :dependent => :destroy
     has_many :authorized_tokens, :class_name => "AccessToken", :conditions => { :revoked_at => nil }
     has_many :authorized_applications, :through => :authorized_tokens, :source => :application
 
-    validates :name, :secret, :redirect_uri, :presence => true
+    validates :name, :secret, :redirect_uri, :resource_owner_id, :presence => true
     validates :uid, :presence => true, :uniqueness => true
     validate :validate_redirect_uri
 

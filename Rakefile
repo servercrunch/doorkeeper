@@ -34,6 +34,12 @@ namespace :doorkeeper do
     cd 'spec/dummy'
     system 'bundle exec rails g doorkeeper:install --force'
   end
+
+  desc "Update doorkeeper in dummy app"
+  task :updated do
+    cd 'spec/dummy'
+    system 'bundle exec rails g doorkeeper:update --force'
+  end
 end
 
 APP_RAKEFILE = File.expand_path("../spec/dummy/Rakefile", __FILE__)
